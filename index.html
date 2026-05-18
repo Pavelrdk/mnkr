@@ -188,28 +188,23 @@
                 <h3 class="text-2xl font-bold text-primary mb-4 relative z-10">Яркий и премиальный дизайн</h3>
                 <p class="text-base text-on-surface-variant leading-relaxed mb-6 relative z-10">Мы делаем так, чтобы вашу студию запоминали с первого взгляда. Разрабатываем стильный логотип, красивые прайсы, заметную вывеску и подарочные сертификаты, которые хочется дарить подругам.</p>
                 
-                <!-- Карусель изображений дизайна -->
-                <div class="relative mt-auto mb-4 rounded-xl overflow-hidden shadow-lg border border-gray-100 group cursor-pointer" onclick="openModal('modal-certificat')">
-                    <div class="aspect-[16/9] overflow-hidden bg-gray-100">
-                        <img src="sertificat.webp" alt="Подарочные сертификаты для студии маникюра" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                <!-- Карусель изображений дизайна - 4 фото в сетке -->
+                <div class="relative mt-auto mb-4">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="aspect-square rounded-lg overflow-hidden cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-md" onclick="openLightbox(0)">
+                            <img src="images/sertificat.webp" alt="Сертификаты" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square rounded-lg overflow-hidden cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-md" onclick="openLightbox(1)">
+                            <img src="images/visitki.webp" alt="Визитки" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square rounded-lg overflow-hidden cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-md" onclick="openLightbox(2)">
+                            <img src="images/viveska.webp" alt="Вывеска" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square rounded-lg overflow-hidden cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-md" onclick="openLightbox(3)">
+                            <img src="images/fasad.webp" alt="Фасад" class="w-full h-full object-cover">
+                        </div>
                     </div>
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span class="bg-white/90 backdrop-blur-sm text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">zoom_in</span>
-                            Смотреть сертификаты
-                        </span>
-                    </div>
-                    <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-medium">
-                        Подарочные сертификаты
-                    </div>
-                </div>
-                
-                <!-- Навигация карусели (декоративная) -->
-                <div class="flex gap-2 justify-center mb-4">
-                    <button onclick="openModal('modal-certificat')" class="w-2 h-2 rounded-full bg-accent"></button>
-                    <button onclick="openModal('modal-visitki')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
-                    <button onclick="openModal('modal-viveska')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
-                    <button onclick="openModal('modal-fasad')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
+                    <p class="text-xs text-center text-gray-500 mt-2">Нажмите на фото для просмотра в полном размере</p>
                 </div>
                 
                 <div class="flex flex-wrap gap-2 mt-auto relative z-10">
@@ -551,80 +546,107 @@
     </a>
 </div>
 
-<!-- Модальные окна для просмотра изображений дизайна -->
-<div id="modal-certificat" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-certificat')">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
-        <div class="relative max-w-5xl w-full">
-            <button onclick="closeModal('modal-certificat')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
-            <img src="sertificat.webp" alt="Подарочные сертификаты" class="w-full h-auto rounded-xl shadow-2xl">
-            <p class="text-white text-center mt-4 text-lg font-medium">Подарочные сертификаты — стильный дизайн, который хочется дарить</p>
+<!-- Модальное окно-лайтбокс для просмотра изображений с каруселью -->
+<div id="lightbox" class="fixed inset-0 z-[70] hidden">
+    <div class="absolute inset-0 bg-black/95 backdrop-blur-sm" onclick="closeLightbox()"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <!-- Кнопка закрытия -->
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-accent transition-colors z-10">
+            <span class="material-symbols-outlined text-5xl">close</span>
+        </button>
+        
+        <!-- Кнопка влево -->
+        <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-accent transition-colors z-10">
+            <span class="material-symbols-outlined text-6xl">chevron_left</span>
+        </button>
+        
+        <!-- Изображение -->
+        <div class="relative max-w-6xl max-h-[85vh]">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+            <p id="lightbox-caption" class="text-white text-center mt-4 text-xl font-medium"></p>
         </div>
-    </div>
-</div>
-
-<div id="modal-visitki" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-visitki')">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
-        <div class="relative max-w-5xl w-full">
-            <button onclick="closeModal('modal-visitki')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
-            <img src="visitki.webp" alt="Визитки студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
-            <p class="text-white text-center mt-4 text-lg font-medium">Визитки — запоминающийся дизайн с контактами студии</p>
-        </div>
-    </div>
-</div>
-
-<div id="modal-viveska" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-viveska')">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
-        <div class="relative max-w-5xl w-full">
-            <button onclick="closeModal('modal-viveska')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
-            <img src="viveska.webp" alt="Вывеска студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
-            <p class="text-white text-center mt-4 text-lg font-medium">Яркая вывеска — заметна издалека и привлекает клиентов</p>
-        </div>
-    </div>
-</div>
-
-<div id="modal-fasad" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-fasad')">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
-        <div class="relative max-w-5xl w-full">
-            <button onclick="closeModal('modal-fasad')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
-            <img src="fasad.webp" alt="Фасад студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
-            <p class="text-white text-center mt-4 text-lg font-medium">Оформление фасада — премиальный внешний вид студии</p>
+        
+        <!-- Кнопка вправо -->
+        <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-accent transition-colors z-10">
+            <span class="material-symbols-outlined text-6xl">chevron_right</span>
+        </button>
+        
+        <!-- Индикаторы -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+            <button onclick="goToImage(0)" class="lightbox-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-colors"></button>
+            <button onclick="goToImage(1)" class="lightbox-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-colors"></button>
+            <button onclick="goToImage(2)" class="lightbox-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-colors"></button>
+            <button onclick="goToImage(3)" class="lightbox-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-colors"></button>
         </div>
     </div>
 </div>
 
 <script>
-    function openModal(modalId) {
-        document.getElementById(modalId).classList.remove('hidden');
+    const lightboxImages = [
+        { src: 'images/sertificat.webp', caption: 'Подарочные сертификаты — стильный дизайн, который хочется дарить' },
+        { src: 'images/visitki.webp', caption: 'Визитки — запоминающийся дизайн с контактами студии' },
+        { src: 'images/viveska.webp', caption: 'Яркая вывеска — заметна издалека и привлекает клиентов' },
+        { src: 'images/fasad.webp', caption: 'Оформление фасада — премиальный внешний вид студии' }
+    ];
+    
+    let currentImageIndex = 0;
+    
+    function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
+        document.getElementById('lightbox').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
     
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.add('hidden');
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.add('hidden');
         document.body.style.overflow = '';
+    }
+    
+    function updateLightboxImage() {
+        const img = document.getElementById('lightbox-img');
+        const caption = document.getElementById('lightbox-caption');
+        const dots = document.querySelectorAll('.lightbox-dot');
+        
+        img.src = lightboxImages[currentImageIndex].src;
+        img.alt = lightboxImages[currentImageIndex].caption;
+        caption.textContent = lightboxImages[currentImageIndex].caption;
+        
+        // Обновляем активный индикатор
+        dots.forEach((dot, idx) => {
+            if (idx === currentImageIndex) {
+                dot.classList.remove('bg-white/40');
+                dot.classList.add('bg-white');
+            } else {
+                dot.classList.add('bg-white/40');
+                dot.classList.remove('bg-white');
+            }
+        });
+    }
+    
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
+        updateLightboxImage();
+    }
+    
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
+        updateLightboxImage();
+    }
+    
+    function goToImage(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
     }
     
     // Закрытие по ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            const modals = ['modal-certificat', 'modal-visitki', 'modal-viveska', 'modal-fasad'];
-            modals.forEach(modalId => {
-                const modal = document.getElementById(modalId);
-                if (modal && !modal.classList.contains('hidden')) {
-                    closeModal(modalId);
-                }
-            });
+            closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        } else if (e.key === 'ArrowLeft') {
+            prevImage();
         }
     });
 </script>
