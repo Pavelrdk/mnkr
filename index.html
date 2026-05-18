@@ -178,14 +178,41 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
 
-            <!-- Card 1: Design (Span 7) -->
-            <div class="md:col-span-7 border border-outline-variant p-8 md:p-10 flex flex-col bento-card rounded-bento">
-                <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mb-6">
+            <!-- Card 1: Design (Span 7) - С каруселью и модальными окнами -->
+            <div class="md:col-span-7 border border-outline-variant p-8 md:p-10 flex flex-col bento-card rounded-bento relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-accent opacity-5 blur-[60px] rounded-full pointer-events-none"></div>
+                
+                <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mb-6 relative z-10">
                     <span class="material-symbols-outlined text-gradient" style="font-size: 28px;">diamond</span>
                 </div>
-                <h3 class="text-2xl font-bold text-primary mb-4">Яркий и премиальный дизайн</h3>
-                <p class="text-base text-on-surface-variant leading-relaxed mb-6">Мы делаем так, чтобы вашу студию запоминали с первого взгляда. Разрабатываем стильный логотип, красивые прайсы, заметную вывеску и подарочные сертификаты, которые хочется дарить подругам.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
+                <h3 class="text-2xl font-bold text-primary mb-4 relative z-10">Яркий и премиальный дизайн</h3>
+                <p class="text-base text-on-surface-variant leading-relaxed mb-6 relative z-10">Мы делаем так, чтобы вашу студию запоминали с первого взгляда. Разрабатываем стильный логотип, красивые прайсы, заметную вывеску и подарочные сертификаты, которые хочется дарить подругам.</p>
+                
+                <!-- Карусель изображений дизайна -->
+                <div class="relative mt-auto mb-4 rounded-xl overflow-hidden shadow-lg border border-gray-100 group cursor-pointer" onclick="openModal('modal-certificat')">
+                    <div class="aspect-[16/9] overflow-hidden bg-gray-100">
+                        <img src="sertificat.webp" alt="Подарочные сертификаты для студии маникюра" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="bg-white/90 backdrop-blur-sm text-primary px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">zoom_in</span>
+                            Смотреть сертификаты
+                        </span>
+                    </div>
+                    <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-medium">
+                        Подарочные сертификаты
+                    </div>
+                </div>
+                
+                <!-- Навигация карусели (декоративная) -->
+                <div class="flex gap-2 justify-center mb-4">
+                    <button onclick="openModal('modal-certificat')" class="w-2 h-2 rounded-full bg-accent"></button>
+                    <button onclick="openModal('modal-visitki')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
+                    <button onclick="openModal('modal-viveska')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
+                    <button onclick="openModal('modal-fasad')" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-accent transition-colors"></button>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mt-auto relative z-10">
                     <span class="px-3 py-1.5 bg-rose-50 text-accent rounded-xl text-xs font-bold border border-rose-100">Логотип</span>
                     <span class="px-3 py-1.5 bg-rose-50 text-accent rounded-xl text-xs font-bold border border-rose-100">Вывеска</span>
                     <span class="px-3 py-1.5 bg-rose-50 text-accent rounded-xl text-xs font-bold border border-rose-100">Визитки</span>
@@ -523,6 +550,84 @@
         <span class="font-bold text-primary">Бесплатная консультация</span>
     </a>
 </div>
+
+<!-- Модальные окна для просмотра изображений дизайна -->
+<div id="modal-certificat" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-certificat')">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
+        <div class="relative max-w-5xl w-full">
+            <button onclick="closeModal('modal-certificat')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            <img src="sertificat.webp" alt="Подарочные сертификаты" class="w-full h-auto rounded-xl shadow-2xl">
+            <p class="text-white text-center mt-4 text-lg font-medium">Подарочные сертификаты — стильный дизайн, который хочется дарить</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-visitki" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-visitki')">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
+        <div class="relative max-w-5xl w-full">
+            <button onclick="closeModal('modal-visitki')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            <img src="visitki.webp" alt="Визитки студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
+            <p class="text-white text-center mt-4 text-lg font-medium">Визитки — запоминающийся дизайн с контактами студии</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-viveska" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-viveska')">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
+        <div class="relative max-w-5xl w-full">
+            <button onclick="closeModal('modal-viveska')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            <img src="viveska.webp" alt="Вывеска студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
+            <p class="text-white text-center mt-4 text-lg font-medium">Яркая вывеска — заметна издалека и привлекает клиентов</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-fasad" class="fixed inset-0 z-[60] hidden" onclick="closeModal('modal-fasad')">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4" onclick="event.stopPropagation()">
+        <div class="relative max-w-5xl w-full">
+            <button onclick="closeModal('modal-fasad')" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            <img src="fasad.webp" alt="Фасад студии маникюра" class="w-full h-auto rounded-xl shadow-2xl">
+            <p class="text-white text-center mt-4 text-lg font-medium">Оформление фасада — премиальный внешний вид студии</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modals = ['modal-certificat', 'modal-visitki', 'modal-viveska', 'modal-fasad'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeModal(modalId);
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
