@@ -126,11 +126,7 @@
             </ul>
         </div>
         <div class="md:w-1/2 w-full aspect-square bg-white rounded-bento border border-outline-variant shadow-lg flex items-center justify-center overflow-hidden relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-gray-50 to-gray-100 -z-10"></div>
-            <div class="text-center p-8 text-on-surface-variant">
-                <span class="material-symbols-outlined text-6xl mb-4 text-gray-300">event_seat</span>
-                <p>[Заглушка: Фото красивого пустого кресла для педикюра или маникюрного стола]</p>
-            </div>
+            <img src="net-klientov.webp" alt="Красивое пустое кресло для педикюра" class="w-full h-full object-cover">
         </div>
     </div>
 </section>
@@ -719,6 +715,29 @@
                 </div>
                 <h3 class="text-2xl font-bold text-primary mb-4">Яркий и премиальный дизайн</h3>
                 <p class="text-base text-on-surface-variant leading-relaxed mb-6">Мы делаем так, чтобы вашу студию запоминали с первого взгляда. Разрабатываем полный комплект бренд-материалов:</p>
+                
+                <!-- Галерея работ по дизайну -->
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <button onclick="openLightbox('viveska.webp', 'Вывеска студии')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer shadow-md">
+                        <img src="viveska.webp" alt="Вывеска" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+                        </div>
+                    </button>
+                    <button onclick="openLightbox('visitki.webp', 'Визитки')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer shadow-md">
+                        <img src="visitki.webp" alt="Визитки" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+                        </div>
+                    </button>
+                    <button onclick="openLightbox('fasad.webp', 'Фасад студии')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer shadow-md">
+                        <img src="fasad.webp" alt="Фасад" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+                        </div>
+                    </button>
+                </div>
+                
                 <ul class="space-y-2 mb-6">
                     <li class="flex items-start gap-3 text-base text-on-surface-variant">
                         <span class="material-symbols-outlined text-accent text-[18px] mt-0.5">check_circle</span>
@@ -737,28 +756,6 @@
                         <span>Подарочные сертификаты, которые хочется дарить подругам</span>
                     </li>
                 </ul>
-
-                <!-- Галерея работ по дизайну -->
-                <div class="mt-6 grid grid-cols-3 gap-3">
-                    <button onclick="openLightbox('viveska.webp', 'Вывеска студии')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer">
-                        <img src="viveska.webp" alt="Вывеска" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
-                        </div>
-                    </button>
-                    <button onclick="openLightbox('visitki.webp', 'Визитки')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer">
-                        <img src="visitki.webp" alt="Визитки" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
-                        </div>
-                    </button>
-                    <button onclick="openLightbox('fasad.webp', 'Фасад студии')" class="group relative aspect-square rounded-xl overflow-hidden border-2 border-outline-variant hover:border-accent transition-all cursor-pointer">
-                        <img src="fasad.webp" alt="Фасад" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
-                        </div>
-                    </button>
-                </div>
 
                 <div class="flex flex-wrap gap-2 mt-6">
                     <span class="px-3 py-1.5 bg-rose-50 text-accent rounded-xl text-xs font-bold border border-rose-100">Логотип</span>
@@ -942,7 +939,7 @@
                 </div>
                 <!-- Заглушка под фото -->
                 <div class="mt-8 md:mt-0 w-full md:w-80 h-48 bg-gray-50 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-300">
-                    <img src="sertificat.webp" alt="Напечатанные сертификаты" class="w-full h-full object-cover">
+                    <img src="sertificat.webp" alt="Напечатанные сертификаты" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-gray-400 text-sm\'>[Фото напечатанных сертификатов]</span>';">
                 </div>
             </div>
 
